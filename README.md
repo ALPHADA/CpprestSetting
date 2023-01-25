@@ -171,6 +171,7 @@ cpprest가 제공하는 'U' 매크로는 플랫폼 유형의 문자열 또는 �
 이 오류는 cpprest 내부적으로 boost 의 특정 파일을 물고 있는 경우에도 발생하는데(...) 이미 이슈로 제기된 바가 있다.    
 
 > 수정도 검토하였지만 기존 사용자들 코드를 커버할 수 없는 문제가 있어 네이밍은 유지하기로 한듯하다.   
+> https://github.com/microsoft/cpprestsdk/issues/1214
 
 
 cpprest에서는 해결 방안으로 `_TURN_OFF_PLATFORM_STRING`를 제공하는데 이를 사용하면 'U' 를 정의하지 않게 된다.     
@@ -195,9 +196,15 @@ cpprest에서는 해결 방안으로 `_TURN_OFF_PLATFORM_STRING`를 제공하는
 #include <cpprest/http_listener.h>
 ```
 
-하지만 이미 U 를 전방위적으로 사용할때는 적용할수가 없다..
+보통은 문제가 있는 'U'를 사용하지 않는 방법을 채택하는듯하다.    
 
-그래서 나의 경우에는 참조하고 있는 boost의 이름을 바꾸는 것으로 대체하였다.    
+```
+U("something") -> utility::conversions::to_string_t("something")
+```
+
+하지만 나의 경우 이미 U 템플릿을 사용중인 프로젝트여서 적용하기 어려웠다.
+
+그래서 참조하고 있는 boost의 템플릿명을 바꾸는 것으로 대체하였다.    
 충돌이 발생한 파일이 하나여서 해당 파일만 수정하면 됐기에 가능한 방법이었다.    
 
 수정한 경로는 아래와 같다..
@@ -211,3 +218,5 @@ cpprest에서는 해결 방안으로 `_TURN_OFF_PLATFORM_STRING`를 제공하는
 
 추천하는 방법은 아니다.     
 어쩔 수 없을때 사용하도록 하자.     
+
+
