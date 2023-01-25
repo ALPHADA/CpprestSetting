@@ -210,8 +210,9 @@ U("something") -> utility::conversions::to_string_t("something")
 수정한 경로는 아래와 같다..
 
 > /usr/local/Cellar/boost/1.81.0_1/include/boost/multiprecision/cpp_int/misc.hpp
-> ```cpp_int_backend<MinBits1, MaxBits1, SignType1, Checked1, Allocator1> U(storage, temp_size);
-> -> cpp_int_backend<MinBits1, MaxBits1, SignType1, Checked1, Allocator1> UU(storage, temp_size);
+> ```
+> cpp_int_backend<MinBits1, MaxBits1, SignType1, Checked1, Allocator1> U(storage, temp_size);     
+> -> cpp_int_backend<MinBits1, MaxBits1, SignType1, Checked1, Allocator1> UU(storage, temp_size);     
 > 이하 연관된 코드 수정
 > ```
 
