@@ -1,4 +1,4 @@
-# CPPRESTSDK SEKLETON
+# CPPRESTSDK SETTING FOR OSX
 
 MAC OS 환경에서 C++ rest를 사용하기 위한 SDK 붙이기
 
